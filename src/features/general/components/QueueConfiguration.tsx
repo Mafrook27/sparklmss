@@ -7,6 +7,7 @@ const QueueConfiguration = () => {
             title="Queues Configuration (Drag and Drop)"
             initialData={INITIAL_QUEUES}
             onSave={(data) => console.log("Saving Queue Config:", data)}
+            showItemModals
         />
     );
 };

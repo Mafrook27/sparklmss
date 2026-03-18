@@ -7,6 +7,7 @@ const CollectionAgentQueueConfiguration = () => {
             title="Collection Agent Queues Configuration (Drag and Drop)"
             initialData={COLLECTION_AGENT_QUEUES}
             onSave={(data) => console.log("Saving Collection Agent Queue Config:", data)}
+            showItemModals
         />
     );
 };

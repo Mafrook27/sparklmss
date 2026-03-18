@@ -2,7 +2,7 @@ import { useState, useMemo, useCallback } from "react";
 import { PlusCircle, Settings, Edit2, Trash2, Save } from "lucide-react";
 import * as PopoverPrimitive from "@radix-ui/react-popover";
 import { Popover, PopoverTrigger, PopoverContent } from "@/shared/components/ui/popover";
-import { DisplayTable, type DisplayTableColumn } from "../../blacklist/components/DisplayTable";
+import { DisplayTable, type DisplayTableColumn } from "../ui/DisplayTable";
 import { INITIAL_NOTES_TOPICS, type NoteTopic } from "../config/generalconfig";
 
 const NotesTopicConfiguration = () => {

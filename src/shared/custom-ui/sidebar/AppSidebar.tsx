@@ -30,6 +30,7 @@ export default function AppSidebar({
     {},
   );
   const [submenuTop, setSubmenuTop] = useState(0);
+  const [submenuDirection, setSubmenuDirection] = useState<"top" | "bottom">("bottom");
   // Compute active menu from path - this is derived state, no need for useState
   const activeMainMenu = useMemo(() => {
     if (!hasSubMenus || navigationItems.length === 0) return null;
@@ -146,7 +147,23 @@ export default function AppSidebar({
                       if (!el) return;
 
                       const rect = el.getBoundingClientRect();
-                      setSubmenuTop(rect.top);
+                      
+                      // Viewport-aware positioning for Configuration menu
+                      const SUBMENU_HEIGHT = 500; // Approximate max height
+                      const viewportHeight = window.innerHeight;
+                      const willOverflowBottom = rect.top + SUBMENU_HEIGHT > viewportHeight;
+                      
+                      // Apply smart positioning ONLY for Configuration menu
+                      const isConfigurationMenu = item.id === "configuration";
+                      
+                      if (isConfigurationMenu && willOverflowBottom) {
+                        setSubmenuDirection("top");
+                        // Position submenu so its bottom aligns with the menu item's bottom
+                        setSubmenuTop(rect.top);
+                      } else {
+                        setSubmenuDirection("bottom");
+                        setSubmenuTop(rect.top);
+                      }
 
                       setHoveredMainMenu(item.id);
                     } else if (item.path) {
@@ -217,8 +234,10 @@ export default function AppSidebar({
           createPortal( 
             <aside
               style={{
-                top: submenuTop,
                 left: sidebarLeftOffset,
+                ...(submenuDirection === "bottom"
+                  ? { top: submenuTop }
+                  : { bottom: window.innerHeight - submenuTop -350 }), // Offset by menu item height
               }}
               className="
         fixed

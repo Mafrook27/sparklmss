@@ -111,3 +111,23 @@ export const INITIAL_TAGS: TagItem[] = [
     { id: 6, tag: "Follow-up" },
     { id: 7, tag: "Store9" },
 ];
+
+export interface DocumentTypeItem {
+    id: number;
+    name: string;
+    isActive: boolean;
+    order: number;
+}
+
+export const INITIAL_DOC_TYPES: DocumentTypeItem[] = [
+    { id: 1,  name: "W2",                  isActive: true,  order: 1 },
+    { id: 2,  name: "Bank Statement",      isActive: true,  order: 2 },
+    { id: 3,  name: "Pay Stub",            isActive: true,  order: 3 },
+    { id: 4,  name: "Utility Bill",        isActive: true,  order: 4 },
+    { id: 5,  name: "Government ID",       isActive: true,  order: 5 },
+    { id: 6,  name: "Driver License",      isActive: true,  order: 6 },
+    { id: 7,  name: "General",             isActive: true,  order: 7 },
+    { id: 8,  name: "Tax Return",          isActive: false, order: 0 },
+    { id: 9,  name: "Employment Letter",   isActive: false, order: 0 },
+    { id: 10, name: "Social Security Card",isActive: false, order: 0 },
+];
